@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Target, Eye, Heart, CheckCircle } from 'lucide-react';
+import { ArrowRight, Target, Eye, Heart, CheckCircle, ExternalLink, ArrowDown } from 'lucide-react';
 import Layout from '@/components/layout/Layout';
 import SectionTitle from '@/components/common/SectionTitle';
 import Card from '@/components/common/Card';
 import Button from '@/components/common/Button';
 import ShimmerSection from '@/components/shimmer/ShimmerSection';
+import { subsidiariesData } from '@/data/subsidiaries';
 
 const WhoWeAre = () => {
   const [loading, setLoading] = useState(true);
@@ -83,8 +84,133 @@ const WhoWeAre = () => {
         </div>
       </section>
 
-      {/* Mission, Vision, Values */}
+      {/* Corporate Structure Section - Matching reference image */}
       <section className="section-padding bg-background">
+        <div className="container-gov">
+          <h2 className="font-heading text-2xl md:text-4xl font-bold text-primary text-center mb-12">
+            Group Corporate Structure of Kisaan Parivar Ltd
+          </h2>
+          
+          {/* Holding Company Box */}
+          <div className="max-w-5xl mx-auto">
+            {/* Top Level - Holding Company */}
+            <div className="bg-accent/40 border border-accent rounded-lg p-4 md:p-6 text-center mb-4">
+              <h3 className="font-heading text-lg md:text-xl font-bold text-primary">
+                Kisaan Parivar Limited (KPL) (Holding Company) - Standalone
+              </h3>
+            </div>
+            
+            {/* Description Box */}
+            <div className="bg-soft/50 border border-accent/30 rounded-lg p-4 md:p-6 text-center mb-4">
+              <p className="text-sm md:text-base text-foreground/90 leading-relaxed">
+                Standalone - Organic farming through innovative agriculture methods and technologies, processing, sale and distribution of agri and other agri-allied products on wholesale basis through distribution network and B2B model.
+              </p>
+            </div>
+            
+            {/* Arrow Down */}
+            <div className="flex justify-center mb-4">
+              <ArrowDown className="w-8 h-8 text-primary" />
+            </div>
+            
+            {/* Business Verticals Box */}
+            <div className="bg-accent/40 border border-accent rounded-lg p-4 md:p-6 text-center mb-8">
+              <h3 className="font-heading text-base md:text-lg font-semibold text-foreground">
+                Business verticals through its subsidiaries
+              </h3>
+            </div>
+            
+            {/* Connecting Lines and Subsidiary Cards */}
+            <div className="relative">
+              {/* Horizontal Line */}
+              <div className="hidden lg:block absolute top-0 left-0 right-0 h-px bg-primary" style={{ top: '0' }} />
+              
+              {/* Vertical Lines from horizontal to cards */}
+              <div className="hidden lg:block absolute left-[12.5%] w-px h-8 bg-primary" style={{ top: '0' }} />
+              <div className="hidden lg:block absolute left-[37.5%] w-px h-8 bg-primary" style={{ top: '0' }} />
+              <div className="hidden lg:block absolute left-[62.5%] w-px h-8 bg-primary" style={{ top: '0' }} />
+              <div className="hidden lg:block absolute left-[87.5%] w-px h-8 bg-primary" style={{ top: '0' }} />
+              
+              {/* Arrows pointing down */}
+              <div className="hidden lg:flex justify-between px-8 mb-2">
+                {[1, 2, 3, 4].map((_, i) => (
+                  <div key={i} className="flex justify-center w-1/4">
+                    <ArrowDown className="w-6 h-6 text-primary" />
+                  </div>
+                ))}
+              </div>
+              
+              {/* Mobile arrows */}
+              <div className="lg:hidden flex justify-center mb-4">
+                <ArrowDown className="w-6 h-6 text-primary" />
+              </div>
+              
+              {/* Subsidiary Cards Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-3 lg:pt-4">
+                {subsidiariesData.map((sub) => (
+                  <div key={sub.id} className="flex flex-col">
+                    {/* Card Header */}
+                    <div className="bg-accent/40 border border-accent rounded-t-lg p-4 text-center flex-grow">
+                      <h4 className="font-heading text-sm md:text-base font-bold text-primary mb-1">
+                        {sub.shortName}
+                      </h4>
+                      <p className="text-xs md:text-sm text-foreground/80 mb-3">
+                        ({sub.ownership})
+                      </p>
+                      <a 
+                        href={sub.website} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 px-3 py-1.5 bg-background border border-accent rounded-full text-xs text-primary hover:bg-accent/20 transition-colors"
+                      >
+                        View Website
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </div>
+                    
+                    {/* Focus Summary */}
+                    <div className="bg-accent/20 border border-t-0 border-accent rounded-b-lg p-3 text-center">
+                      <p className="text-xs md:text-sm text-foreground/90 leading-relaxed">
+                        {sub.focusSummary}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Bottom connecting lines to future sections */}
+            <div className="flex justify-center mt-8">
+              <ArrowDown className="w-8 h-8 text-primary" />
+            </div>
+            
+            {/* Bottom horizontal line indicating continuation */}
+            <div className="relative mt-4">
+              <div className="h-px bg-primary w-full" />
+              <div className="flex justify-around mt-4">
+                <div className="w-1/3">
+                  <div className="flex justify-center mb-2">
+                    <ArrowDown className="w-6 h-6 text-primary" />
+                  </div>
+                  <div className="bg-accent/30 border border-accent rounded-lg p-3 text-center">
+                    <p className="text-xs md:text-sm text-foreground/80">Farmer Empowerment Programs</p>
+                  </div>
+                </div>
+                <div className="w-1/3 mx-2">
+                  <div className="flex justify-center mb-2">
+                    <ArrowDown className="w-6 h-6 text-primary" />
+                  </div>
+                  <div className="bg-accent/30 border border-accent rounded-lg p-3 text-center">
+                    <p className="text-xs md:text-sm text-foreground/80">Sustainable Agriculture Initiatives</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission, Vision, Values */}
+      <section className="section-padding bg-muted">
         <div className="container-gov">
           <div className="grid md:grid-cols-3 gap-6">
             {values.map((item, index) => (
@@ -105,7 +231,7 @@ const WhoWeAre = () => {
       </section>
 
       {/* Story Section */}
-      <section className="section-padding bg-muted">
+      <section className="section-padding bg-background">
         <div className="container-gov">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -138,7 +264,7 @@ const WhoWeAre = () => {
       </section>
 
       {/* Timeline */}
-      <section className="section-padding bg-background">
+      <section className="section-padding bg-muted">
         <div className="container-gov">
           <SectionTitle 
             title="Our Journey" 
