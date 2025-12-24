@@ -1,17 +1,22 @@
 export interface Subsidiary {
   id: number;
   name: string;
+  shortName: string;
   description: string;
   focus: string[];
   established: string;
   icon: string;
+  website: string;
+  ownership: string;
+  focusSummary: string;
 }
 
 export const subsidiariesData: Subsidiary[] = [
   {
     id: 1,
-    name: "Broadway Agri Ecom Tech Pvt Ltd",
-    description: "Pioneering the integration of technology in agricultural commerce, Broadway Agri Ecom Tech develops innovative e-commerce solutions connecting farmers directly with consumers and businesses.",
+    name: "Broadway Agri Ecom Tech Private Limited",
+    shortName: "Broadway Agri Ecom Tech Pvt. Ltd.",
+    description: "B2B Model and E-Com Solutions – Cluster of stock delivery points both for Kisaan Parivar Group and other E-com majors.",
     focus: [
       "Agricultural E-commerce Platforms",
       "Digital Marketplace Solutions",
@@ -19,12 +24,16 @@ export const subsidiariesData: Subsidiary[] = [
       "Supply Chain Digitization"
     ],
     established: "2018",
-    icon: "laptop"
+    icon: "laptop",
+    website: "https://broadwayagri.com/",
+    ownership: "90% Subsidiary Company",
+    focusSummary: "B2B Model and E-Com Solutions – Cluster of stock delivery points both for Kisaan Parivar Group and other E-com majors"
   },
   {
     id: 2,
-    name: "Sailaja Sree Retail Marts Pvt Ltd",
-    description: "Operating a chain of retail outlets specializing in organic and farm-fresh products, Sailaja Sree Retail Marts brings quality agricultural produce directly to urban consumers.",
+    name: "Sailaja Sree Retail Marts Private Limited",
+    shortName: "Sailaja Sree Retail Marts Pvt. Ltd.",
+    description: "Diversified Retail Stores – Focus on Semi-Rural and Rural, Tier-II and III Areas.",
     focus: [
       "Organic Retail Stores",
       "Farm-Fresh Products",
@@ -32,12 +41,16 @@ export const subsidiariesData: Subsidiary[] = [
       "Quality Assurance"
     ],
     established: "2019",
-    icon: "store"
+    icon: "store",
+    website: "https://sailajasreeretail.com/",
+    ownership: "90% Subsidiary Company",
+    focusSummary: "Diversified Retail Stores – Focus on Semi-Rural and Rural, Tier-II and III Areas"
   },
   {
     id: 3,
-    name: "NPN Agri & Logistics Pvt Ltd",
-    description: "Comprehensive agricultural logistics solutions ensuring timely and safe transportation of farm produce with temperature-controlled facilities and efficient supply chain management.",
+    name: "NPN Agri & Logistics Private Limited",
+    shortName: "NPN Agri & Logistics Pvt. Ltd.",
+    description: "Processing, Sale Distribution on Wholesale and B2B model for Agri and other allied products with warehouses, cold storages.",
     focus: [
       "Cold Chain Logistics",
       "Agricultural Transport",
@@ -45,12 +58,16 @@ export const subsidiariesData: Subsidiary[] = [
       "Supply Chain Solutions"
     ],
     established: "2020",
-    icon: "truck"
+    icon: "truck",
+    website: "https://npnagri.com/",
+    ownership: "90% Subsidiary Company",
+    focusSummary: "Processing, Sale Distribution on Wholesale and B2B model for Agri and other allied products with warehouses, cold storages"
   },
   {
     id: 4,
-    name: "Kisaan Parivar Mart Pvt Ltd",
-    description: "The flagship retail arm of the Kisaan Parivar group, operating KP E-Marts that serve as one-stop destinations for all agricultural and organic food products.",
+    name: "Kisaan Parivar Mart Private Limited",
+    shortName: "Kisaan Parivar Mart Pvt. Ltd.",
+    description: "Specialty Retail Stores – Focus on Urban and Tier-I Cities.",
     focus: [
       "KP E-Mart Operations",
       "Wholesale Distribution",
@@ -58,6 +75,9 @@ export const subsidiariesData: Subsidiary[] = [
       "Product Quality Control"
     ],
     established: "2017",
-    icon: "shopping-cart"
+    icon: "shopping-cart",
+    website: "https://www.kpemart.com/",
+    ownership: "Wholly owned Subsidiary Company",
+    focusSummary: "Specialty Retail Stores – Focus on Urban and Tier-I Cities"
   }
 ];

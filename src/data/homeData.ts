@@ -19,21 +19,28 @@ export const sliderData: SliderItem[] = [
     title: "Empowering Indian Farmers",
     subtitle: "Sustainable Agriculture for a Better Tomorrow",
     description: "Supporting over 50,000 farmers across 12 states with modern agricultural practices and organic farming solutions.",
-    image: "/hero-agriculture.jpg"
+    image: "farming-harvest"
   },
   {
     id: 2,
-    title: "Organic Farming Excellence",
-    subtitle: "Certified Organic Products for Global Markets",
-    description: "ISO 9001:2015 certified operations delivering premium quality organic produce to international markets.",
-    image: "/hero-organic.jpg"
+    title: "Modern Agricultural Excellence",
+    subtitle: "Technology-Driven Farming Solutions",
+    description: "Leveraging modern machinery and innovative techniques to maximize yield while preserving soil health.",
+    image: "tractor-farming"
   },
   {
     id: 3,
-    title: "Food Security Mission",
-    subtitle: "From Farm to Table, Quality Assured",
-    description: "End-to-end supply chain management ensuring fresh, nutritious food reaches every household.",
-    image: "/hero-food.jpg"
+    title: "Sustainable Dairy Farming",
+    subtitle: "Organic Livestock Management",
+    description: "Promoting organic dairy practices with healthy livestock grazing on pesticide-free pastures.",
+    image: "cows-grazing"
+  },
+  {
+    id: 4,
+    title: "Organic Farming Excellence",
+    subtitle: "Certified Organic Products for Global Markets",
+    description: "ISO 9001:2015 certified operations delivering premium quality organic produce to international markets.",
+    image: "organic-farm-aerial"
   }
 ];
 
