@@ -12,6 +12,7 @@ import OrganicFarming from "./pages/FarmingSolutions/OrganicFarming";
 import ImportExport from "./pages/FarmingSolutions/ImportExport";
 import OrganicFoods from "./pages/FarmingSolutions/OrganicFoods";
 import Subsidiaries from "./pages/Subsidiaries/Subsidiaries";
+import GalleryTestimonials from "./pages/LegacyRecognition/GalleryTestimonials";
 import Contact from "./pages/Contact/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -34,8 +35,8 @@ const App = () => (
           <Route path="/farming-solutions/organic-farming" element={<OrganicFarming />} />
           <Route path="/farming-solutions/import-export" element={<ImportExport />} />
           <Route path="/farming-solutions/organic-foods" element={<OrganicFoods />} />
-          <Route path="/legacy-recognition" element={<WhoWeAre />} />
-          <Route path="/legacy-recognition/gallery-testimonials" element={<WhoWeAre />} />
+          <Route path="/legacy-recognition" element={<GalleryTestimonials />} />
+          <Route path="/legacy-recognition/gallery-testimonials" element={<GalleryTestimonials />} />
           <Route path="/legacy-recognition/media-videos" element={<WhoWeAre />} />
           <Route path="/legacy-recognition/certifications" element={<WhoWeAre />} />
           <Route path="/subsidiaries" element={<Subsidiaries />} />
