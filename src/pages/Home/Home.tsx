@@ -153,11 +153,11 @@ const Home = () => {
             {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/40" />
             <div className="container-gov h-full flex items-center relative z-10">
-              <div className="max-w-2xl text-primary-foreground animate-fade-in px-4 sm:px-0">
-                <span className="inline-block px-3 py-1 sm:px-4 glass rounded-full text-accent text-xs sm:text-sm mb-3 sm:mb-4 border border-accent/30">
+              <div className="max-w-2xl animate-fade-in px-4 sm:px-0">
+                <span className="inline-block px-3 py-1 sm:px-4 glass rounded-full text-black/80 font-bold text-xs sm:text-sm mb-3 sm:mb-4 border border-accent/30">
                   {slide.subtitle}
                 </span>
-                <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
+                <h1 className="font-heading text-primary-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
                   {slide.title}
                 </h1>
                 <p className="text-sm sm:text-base md:text-lg lg:text-xl text-primary-foreground/80 mb-6 sm:mb-8 max-w-xl">
@@ -376,8 +376,8 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding bg-accent">
-        <div className="container-gov text-center px-4">
+      <section className="section-padding">
+        <div className="container-gov bg-accent text-center p-10 sm:p-12 rounded-xl">
           <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-accent-foreground mb-3 sm:mb-4">
             Ready to Transform Agriculture?
           </h2>

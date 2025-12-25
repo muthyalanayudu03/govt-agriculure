@@ -90,9 +90,8 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Main navigation */}
-      <nav className="container-gov backdrop-blur-md bg-card/95">
-        <div className="flex items-center justify-between py-3 lg:py-4">
+      <nav className="w-full backdrop-blur-md bg-card/95">
+        <div className="flex items-center justify-between py-2 lg:py-3">
           {/* Mobile menu button - left */}
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -154,14 +153,8 @@ const Navbar = () => {
 
           {/* Logo - Centered */}
           <Link to="/" className="flex items-center gap-2 sm:gap-3 mx-6 lg:mx-8">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary rounded-full flex items-center justify-center shadow-glass">
-              <span className="text-primary-foreground font-heading font-bold text-lg sm:text-xl">KP</span>
-            </div>
-            <div className="hidden sm:block">
-              <h1 className="font-heading text-lg sm:text-xl font-bold text-primary leading-tight">
-                Kisaan Parivar
-              </h1>
-              <p className="text-xs text-muted-foreground">Empowering Farmers</p>
+            <div className="flex items-center justify-center">
+              <img src={LogoImg} alt="Kisaan Parivar Logo" className="w-10 h-10 sm:w-20 sm:h-20" />
             </div>
           </Link>
 

@@ -106,20 +106,19 @@ const Footer = () => {
                 <MapPin className="w-4 h-4 mt-1 text-accent flex-shrink-0" />
                 <span className="text-primary-foreground/80 text-sm">
                   Kisaan Parivar Pvt Ltd,<br />
-                  Hitech City, Hyderabad,<br />
-                  Telangana - 500081
+                  Asian Suncity, B- Block, Flat no 1002, 10th Floor, Behind Sarath city mall, Kondapur, Hyderabad- 500084.
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-accent" />
-                <a href="tel:+919876543210" className="text-primary-foreground/80 hover:text-accent transition-colors text-sm">
-                  +91 98765 43210
+                <a href="tel:+91 9966999817" className="text-primary-foreground/80 hover:text-accent transition-colors text-sm">
+                  +91 9966999817
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-accent" />
-                <a href="mailto:info@kisaanparivar.com" className="text-primary-foreground/80 hover:text-accent transition-colors text-sm">
-                  info@kisaanparivar.com
+                <a href="mailto:kpinfo@kisaanparivar.com" className="text-primary-foreground/80 hover:text-accent transition-colors text-sm">
+                  kpinfo@kisaanparivar.com
                 </a>
               </li>
             </ul>
