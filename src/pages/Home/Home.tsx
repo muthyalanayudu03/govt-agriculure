@@ -216,7 +216,8 @@ const Home = () => {
       <section className="section-padding bg-background">
         <div className="container-gov">
           <SectionTitle
-            title="Our Key Highlights"
+            title="Our Key Highlight"
+            centered ={true}
             subtitle="Driving sustainable agricultural growth through innovation, quality, and farmer empowerment"
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
@@ -320,7 +321,7 @@ const Home = () => {
           />
         </div>
         <div className="max-w-full overflow-hidden">
-          <InfiniteCarousel speed={40}>
+          <InfiniteCarousel speed={10}>
             {certifications.map((cert) => (
               <div 
                 key={cert.id} 
