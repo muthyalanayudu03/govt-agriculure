@@ -19,8 +19,9 @@ import SectionTitle from '@/components/common/SectionTitle';
 import Card from '@/components/common/Card';
 import Button from '@/components/common/Button';
 import HighlightCard from '@/components/highlights/HighlightCard';
-import InfiniteCarousel from '@/components/carousel/InfiniteCarousel';
+import SmoothCarousel from '@/components/carousel/SmoothCarousel';
 import ShimmerSection from '@/components/shimmer/ShimmerSection';
+import WelcomePopup from '@/components/WelcomePopup';
 import { fetchHomeData, fetchHighlights, fetchCertifications } from '@/services/api';
 import type { SliderItem, StatItem } from '@/data/homeData';
 import type { Highlight } from '@/data/highlights';
@@ -62,6 +63,7 @@ const Home = () => {
   const [certifications, setCertifications] = useState<Certification[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
@@ -82,6 +84,18 @@ const Home = () => {
     };
     loadData();
   }, []);
+
+  // Show popup after 1.5 seconds
+  useEffect(() => {
+    const hasSeenPopup = sessionStorage.getItem('hasSeenWelcomePopup');
+    if (!hasSeenPopup && !loading) {
+      const timer = setTimeout(() => {
+        setShowPopup(true);
+        sessionStorage.setItem('hasSeenWelcomePopup', 'true');
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [loading]);
 
   useEffect(() => {
     if (!homeData?.slider.length) return;
@@ -119,6 +133,9 @@ const Home = () => {
 
   return (
     <Layout>
+      {/* Welcome Popup */}
+      {showPopup && <WelcomePopup onClose={() => setShowPopup(false)} />}
+
       {/* Hero Slider */}
       <section className="relative h-[500px] sm:h-[550px] md:h-[600px] lg:h-[650px] bg-primary overflow-hidden">
         {homeData?.slider.map((slide, index) => (
@@ -137,7 +154,7 @@ const Home = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/40" />
             <div className="container-gov h-full flex items-center relative z-10">
               <div className="max-w-2xl text-primary-foreground animate-fade-in px-4 sm:px-0">
-                <span className="inline-block px-3 py-1 sm:px-4 bg-accent/20 border border-accent/40 rounded-full text-accent text-xs sm:text-sm mb-3 sm:mb-4">
+                <span className="inline-block px-3 py-1 sm:px-4 glass rounded-full text-accent text-xs sm:text-sm mb-3 sm:mb-4 border border-accent/30">
                   {slide.subtitle}
                 </span>
                 <h1 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
@@ -148,13 +165,13 @@ const Home = () => {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <Link to="/about/who-we-are">
-                    <Button variant="outline" className="w-full sm:w-auto border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
+                    <Button variant="outline" className="w-full sm:w-auto border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary glass">
                       Learn More
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   </Link>
                   <Link to="/contact">
-                    <Button className="w-full sm:w-auto bg-accent text-primary hover:bg-accent/90">
+                    <Button className="w-full sm:w-auto bg-accent text-accent-foreground hover:bg-accent/90 glass-button">
                       Contact Us
                     </Button>
                   </Link>
@@ -168,7 +185,7 @@ const Home = () => {
         <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 sm:gap-4 z-20">
           <button
             onClick={prevSlide}
-            className="p-1.5 sm:p-2 bg-primary-foreground/20 rounded-full hover:bg-primary-foreground/30 transition-colors"
+            className="p-1.5 sm:p-2 glass rounded-full hover:bg-primary-foreground/30 transition-colors"
             aria-label="Previous slide"
           >
             <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground" />
@@ -187,7 +204,7 @@ const Home = () => {
           </div>
           <button
             onClick={nextSlide}
-            className="p-1.5 sm:p-2 bg-primary-foreground/20 rounded-full hover:bg-primary-foreground/30 transition-colors"
+            className="p-1.5 sm:p-2 glass rounded-full hover:bg-primary-foreground/30 transition-colors"
             aria-label="Next slide"
           >
             <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-primary-foreground" />
@@ -251,24 +268,24 @@ const Home = () => {
                 ))}
               </ul>
               <Link to="/about/who-we-are">
-                <Button className="w-full sm:w-auto">
+                <Button className="w-full sm:w-auto glass-button">
                   Discover More
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
             </div>
             <div className="relative">
-              <div className="bg-primary rounded-lg p-6 sm:p-8 text-primary-foreground">
+              <div className="glass-card bg-primary rounded-lg p-6 sm:p-8 text-primary-foreground">
                 <h3 className="font-heading text-xl sm:text-2xl font-semibold mb-4">Our Mission</h3>
                 <p className="text-primary-foreground/80 leading-relaxed mb-6 text-sm sm:text-base">
                   To create a sustainable agricultural ecosystem that empowers farmers, promotes organic practices, and contributes to national food security while ensuring environmental preservation.
                 </p>
                 <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                  <div className="bg-secondary/50 rounded-lg p-3 sm:p-4 text-center">
+                  <div className="glass rounded-lg p-3 sm:p-4 text-center">
                     <div className="text-xl sm:text-2xl font-bold text-accent">15+</div>
                     <div className="text-xs sm:text-sm text-primary-foreground/70">Years Experience</div>
                   </div>
-                  <div className="bg-secondary/50 rounded-lg p-3 sm:p-4 text-center">
+                  <div className="glass rounded-lg p-3 sm:p-4 text-center">
                     <div className="text-xl sm:text-2xl font-bold text-accent">50K+</div>
                     <div className="text-xs sm:text-sm text-primary-foreground/70">Farmers Supported</div>
                   </div>
@@ -288,7 +305,7 @@ const Home = () => {
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {homeData?.services.map((service) => (
-              <Card key={service.id} className="text-center group">
+              <Card key={service.id} className="text-center group glass-card" hover>
                 <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-accent/30 text-primary mb-3 sm:mb-4 group-hover:bg-accent transition-colors">
                   {iconMap[service.icon]}
                 </div>
@@ -311,43 +328,28 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Certifications Carousel */}
-      <section className="section-padding bg-muted">
-        <div className="container-gov">
+      {/* Certifications Carousel - Single Smooth Moving */}
+      <section className="section-padding bg-muted overflow-hidden">
+        <div className="container-gov mb-8">
           <SectionTitle
             title="Our Certifications"
             subtitle="Internationally recognized quality standards and compliance"
           />
         </div>
-        <div className="max-w-full overflow-hidden">
-          <InfiniteCarousel speed={40}>
-            {certifications.map((cert) => (
-              <div 
-                key={cert.id} 
-                className="flex-shrink-0 w-56 sm:w-64 md:w-72 bg-card border border-border rounded-lg p-4 sm:p-6 text-center"
-              >
-                <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-accent/30 text-primary mb-2 sm:mb-3">
-                  {iconMap[cert.icon] || <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />}
-                </div>
-                <h4 className="font-heading font-semibold text-foreground mb-1 text-sm sm:text-base">{cert.name}</h4>
-                <p className="text-primary text-xs sm:text-sm font-mono">{cert.code}</p>
+        <SmoothCarousel speed={30}>
+          {certifications.map((cert) => (
+            <div 
+              key={cert.id} 
+              className="flex-shrink-0 w-64 sm:w-72 md:w-80 glass-card bg-card rounded-xl p-5 sm:p-6 text-center hover:shadow-glass-lg transition-all duration-300"
+            >
+              <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-accent/20 text-primary mb-3 sm:mb-4">
+                {iconMap[cert.icon] || <ShieldCheck className="w-6 h-6 sm:w-7 sm:h-7" />}
               </div>
-            ))}
-            {/* Duplicate for seamless loop */}
-            {certifications.map((cert) => (
-              <div 
-                key={`dup-${cert.id}`} 
-                className="flex-shrink-0 w-56 sm:w-64 md:w-72 bg-card border border-border rounded-lg p-4 sm:p-6 text-center"
-              >
-                <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-accent/30 text-primary mb-2 sm:mb-3">
-                  {iconMap[cert.icon] || <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />}
-                </div>
-                <h4 className="font-heading font-semibold text-foreground mb-1 text-sm sm:text-base">{cert.name}</h4>
-                <p className="text-primary text-xs sm:text-sm font-mono">{cert.code}</p>
-              </div>
-            ))}
-          </InfiniteCarousel>
-        </div>
+              <h4 className="font-heading font-semibold text-foreground mb-2 text-sm sm:text-base">{cert.name}</h4>
+              <p className="text-primary text-xs sm:text-sm font-mono bg-muted px-2 py-1 rounded inline-block">{cert.code}</p>
+            </div>
+          ))}
+        </SmoothCarousel>
       </section>
 
       {/* Trust Section */}
@@ -363,7 +365,7 @@ const Home = () => {
             {['Ministry of Agriculture', 'APEDA India', 'FSSAI', 'Organic India', 'State Agri Dept', 'FPO Network'].map((partner, index) => (
               <div 
                 key={index}
-                className="bg-secondary/50 rounded-lg p-3 sm:p-4 text-xs sm:text-sm font-medium"
+                className="glass rounded-lg p-3 sm:p-4 text-xs sm:text-sm font-medium"
               >
                 {partner}
               </div>
@@ -375,15 +377,15 @@ const Home = () => {
       {/* CTA Section */}
       <section className="section-padding bg-accent">
         <div className="container-gov text-center px-4">
-          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-primary mb-3 sm:mb-4">
+          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-semibold text-accent-foreground mb-3 sm:mb-4">
             Ready to Transform Agriculture?
           </h2>
-          <p className="text-primary/80 max-w-2xl mx-auto mb-6 sm:mb-8 text-sm sm:text-base">
+          <p className="text-accent-foreground/80 max-w-2xl mx-auto mb-6 sm:mb-8 text-sm sm:text-base">
             Join hands with Kisaan Parivar in building a sustainable future for Indian agriculture. Whether you're a farmer, investor, or partner, we welcome you.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
             <Link to="/contact">
-              <Button className="w-full sm:w-auto bg-primary text-primary-foreground">
+              <Button className="w-full sm:w-auto bg-primary text-primary-foreground glass-button">
                 Get in Touch
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
