@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Phone, Mail } from 'lucide-react';
 
-const navItems = [
+// Left side navigation items
+const leftNavItems = [
   { label: 'Home', path: '/' },
   { 
     label: 'About', 
@@ -22,7 +23,11 @@ const navItems = [
       { label: 'Import & Export', path: '/farming-solutions/import-export' },
       { label: 'Organic Foods', path: '/farming-solutions/organic-foods' }
     ]
-  },
+  }
+];
+
+// Right side navigation items
+const rightNavItems = [
   { 
     label: 'Legacy & Recognition', 
     path: '/legacy-recognition',
@@ -35,6 +40,9 @@ const navItems = [
   { label: 'Subsidiaries', path: '/subsidiaries' },
   { label: 'Contact', path: '/contact' }
 ];
+
+// Combined for mobile
+const navItems = [...leftNavItems, ...rightNavItems];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -92,8 +100,58 @@ const Navbar = () => {
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
 
-          {/* Logo - Centered on all screens */}
-          <Link to="/" className="flex items-center gap-2 sm:gap-3 absolute left-1/2 -translate-x-1/2 lg:static lg:translate-x-0">
+          {/* Left Navigation - Desktop */}
+          <div className="hidden lg:flex items-center gap-1 flex-1 justify-end">
+            {leftNavItems.map((item) => (
+              <div 
+                key={item.path}
+                className="relative"
+                onMouseEnter={() => item.children && handleDropdownEnter(item.path)}
+                onMouseLeave={handleDropdownLeave}
+              >
+                <Link
+                  to={item.children ? '#' : item.path}
+                  onClick={(e) => item.children && e.preventDefault()}
+                  className={`px-3 py-2 rounded-md text-sm font-medium flex items-center gap-1 transition-all duration-200 ${
+                    isActive(item.path)
+                      ? 'text-primary bg-accent/30'
+                      : 'text-muted-foreground hover:text-primary hover:bg-muted/50'
+                  }`}
+                >
+                  {item.label}
+                  {item.children && (
+                    <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${activeDropdown === item.path ? 'rotate-180' : ''}`} />
+                  )}
+                </Link>
+
+                {/* Dropdown */}
+                {item.children && activeDropdown === item.path && (
+                  <div 
+                    className="absolute top-full left-0 mt-1 bg-card border border-border rounded-lg shadow-glass-lg py-2 min-w-[220px] animate-fade-in z-50"
+                    onMouseEnter={() => handleDropdownEnter(item.path)}
+                    onMouseLeave={handleDropdownLeave}
+                  >
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.path}
+                        to={child.path}
+                        className={`block px-4 py-2.5 text-sm transition-all duration-200 ${
+                          location.pathname === child.path
+                            ? 'text-primary bg-accent/20 font-medium'
+                            : 'text-muted-foreground hover:text-primary hover:bg-muted/50 hover:pl-5'
+                        }`}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Logo - Centered */}
+          <Link to="/" className="flex items-center gap-2 sm:gap-3 mx-6 lg:mx-8">
             <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary rounded-full flex items-center justify-center shadow-glass">
               <span className="text-primary-foreground font-heading font-bold text-lg sm:text-xl">KP</span>
             </div>
@@ -105,9 +163,9 @@ const Navbar = () => {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navItems.map((item) => (
+          {/* Right Navigation - Desktop */}
+          <div className="hidden lg:flex items-center gap-1 flex-1 justify-start">
+            {rightNavItems.map((item) => (
               <div 
                 key={item.path}
                 className="relative"
